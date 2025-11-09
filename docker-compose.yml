@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  # Serviço do banco de dados MySQL
+  db:
+    image: mysql:8.0          # Usamos a imagem oficial do MySQL versão 8
+    container_name: mysql-dev-db
+    restart: unless-stopped
+    environment:
+      # Define a senha de root. Mude 'root' se quiser mais segurança.
+      MYSQL_ROOT_PASSWORD: root
+      # Você pode criar um banco de dados inicial se quiser
+      MYSQL_DATABASE: minimal_api
+    ports:
+      # Mapeia a porta 3306 do container para a porta 3306 da sua máquina
+      # Formato: <porta-local>:<porta-container>
+      - "3306:3306"
+    volumes:
+      # Monta um "volume" para persistir os dados do banco
+      # Se você apagar o container, os dados NÃO serão perdidos.
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  # Define o volume que será usado
+  mysql-data:
