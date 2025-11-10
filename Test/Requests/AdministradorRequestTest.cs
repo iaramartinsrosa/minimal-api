@@ -55,5 +55,7 @@ public class AdministradorRequestTest
         Assert.IsNotNull(admLogado?.Email ?? "");
         Assert.IsNotNull(admLogado?.Perfil ?? "");
         Assert.IsNotNull(admLogado?.Token ?? "");
+
+        Console.WriteLine(admLogado?.Token);
     }
 }
