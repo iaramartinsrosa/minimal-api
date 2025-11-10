@@ -1,3 +1,4 @@
+using System.Net;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -41,7 +42,8 @@ public class AdministradorRequestTest
         var response = await Setup.client.PostAsync($"/administradores/login", content);
 
         //Assert
-        Assert.AreEqual(200, (int)response.StatusCode);
+        // Assert.AreEqual(200, (int)response.StatusCode);
+        Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
         var result = await response.Content.ReadAsStringAsync();
         var admLogado = JsonSerializer.Deserialize<AdministradorLogado>(result, new JsonSerializerOptions()
